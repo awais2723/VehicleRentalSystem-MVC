@@ -1,0 +1,38 @@
+﻿@model List<VehicleRentalSystem.Models.BookingHistory>
+@{
+    ViewBag.Title = "Booking History";
+}
+
+<h2>Booking History</h2>
+
+@if (Model != null && Model.Any())
+{
+    <table class="table table-bordered table-striped">
+        <thead>
+            <tr>
+                <th>Vehicle</th>
+                <th>Model</th>
+                <th>Start Date</th>
+                <th>End Date</th>
+                <th>Total Amount (₹)</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var booking in Model)
+            {
+                <tr>
+                    <td>@booking.VehicleName</td>
+                    <td>@booking.VehicleModel</td>
+             <td>@(booking.StartDate?.ToShortDateString() ?? "-")</td>
+<td>@(booking.EndDate?.ToShortDateString() ?? "-")</td>
+
+                    <td>@booking.TotalAmount</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <div class="alert alert-info">No booking history found.</div>
+}

@@ -1,0 +1,49 @@
+﻿@model IEnumerable<VehicleRentalSystem.Models.Vehicle>
+
+@{
+    ViewBag.Title = "Available Vehicles";
+}
+
+<h2>Available Vehicles</h2>
+
+@if (Model != null && Model.Any())
+{
+    <table class="table table-bordered table-striped">
+        <thead>
+            <tr>
+                <th>Image</th>
+                <th>Name</th>
+                <th>Type</th>
+                <th>Model</th>
+                <th>Engine Capacity</th>
+                <th>Rate Per Day</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var vehicle in Model)
+            {
+                <tr>
+                    <td>
+                        @if (!string.IsNullOrEmpty(vehicle.ImagePath))
+                        {
+                            <img src="@Url.Content(vehicle.ImagePath)" alt="Vehicle" width="100" height="60" />
+                        }
+                    </td>
+                    <td>@vehicle.Name</td>
+                    <td>@vehicle.Type</td>
+                    <td>@vehicle.Model</td>
+                    <td>@vehicle.EngineCapacity</td>
+                    <td>₹@vehicle.RatePerDay</td>
+                    <td>
+                        <a href="@Url.Action("Book", "Customer", new { id = vehicle.Id })" class="btn btn-primary btn-sm">Book Now</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <div class="alert alert-info">No vehicles are currently available.</div>
+}

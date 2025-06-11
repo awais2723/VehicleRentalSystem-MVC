@@ -1,0 +1,34 @@
+﻿@model VehicleRentalSystem.Models.Booking
+
+@{
+    ViewBag.Title = "Book Vehicle";
+}
+
+<h2>Book Vehicle</h2>
+
+<div>
+    <strong>Vehicle Name:</strong> @ViewBag.VehicleName <br />
+    <strong>Type:</strong> @ViewBag.VehicleType <br />
+    <strong>Rate Per Day:</strong> ₹@ViewBag.RatePerDay
+</div>
+
+<hr />
+
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+    
+    @Html.HiddenFor(model => model.VehicleId)
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.StartDate)
+        @Html.TextBoxFor(model => model.StartDate, new { @class = "form-control", type = "date" })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.EndDate)
+        @Html.TextBoxFor(model => model.EndDate, new { @class = "form-control", type = "date" })
+    </div>
+
+    <button type="submit" class="btn btn-primary">Confirm Booking</button>
+}

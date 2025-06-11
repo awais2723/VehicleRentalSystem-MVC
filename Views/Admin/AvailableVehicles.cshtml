@@ -1,0 +1,27 @@
+﻿@model IEnumerable<VehicleRentalSystem.Models.Vehicle>
+
+<h2>Available Vehicles</h2>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Type</th>
+            <th>Model</th>
+            <th>Rate Per Day</th>
+            <th>Engine Capacity</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var vehicle in Model)
+        {
+            <tr>
+                <td>@vehicle.Name</td>
+                <td>@vehicle.Type</td>
+                <td>@vehicle.Model</td>
+                <td>@vehicle.RatePerDay</td>
+                <td>@vehicle.EngineCapacity</td>
+            </tr>
+        }
+    </tbody>
+</table>

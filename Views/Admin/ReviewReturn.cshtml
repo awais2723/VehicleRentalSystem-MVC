@@ -1,0 +1,67 @@
+﻿@model VehicleRentalSystem.Models.Booking
+
+@{
+    ViewBag.Title = "Review Return Request";
+    var totalDays = (Model.EndDate - Model.StartDate)?.Days + 1 ?? 1;
+    totalDays = Math.Max(totalDays, 1);
+    var totalAmount = totalDays * Model.Vehicle.RatePerDay;
+}
+
+<h2>Review Return Request</h2>
+
+<div class="card p-3">
+    <h4>Vehicle: @Model.Vehicle.Name</h4>
+    <p><strong>Customer:</strong> @Model.User.Username</p>
+    <p><strong>Start Date:</strong> @(Model.StartDate.HasValue ? Model.StartDate.Value.ToShortDateString() : "N/A")</p>
+    <p><strong>End Date:</strong> @(Model.EndDate.HasValue ? Model.EndDate.Value.ToShortDateString() : "N/A")</p>
+    <p><strong>Rate Per Day:</strong> Rs. @Model.Vehicle.RatePerDay</p>
+    <p><strong>Total Days:</strong> <span id="totalDays">@totalDays</span></p>
+    <p class="text-success fw-bold"><strong>Total Payment:</strong> Rs. <span id="totalPayment">@totalAmount</span></p>
+</div>
+
+<hr />
+
+@using (Html.BeginForm("ReviewReturn", "Admin", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+    @Html.Hidden("id", Model.Id)
+
+    <div class="form-group">
+<label for="newEndDate">Adjust End Date:</label>
+<input type="date" class="form-control" id="newEndDate" name="newEndDate" value="@Model.EndDate?.ToString("yyyy-MM-dd")" />
+
+    </div>
+
+    <button type="submit" class="btn btn-success mt-3">Approve Return</button>
+    <a href="@Url.Action("PendingReturns")" class="btn btn-secondary mt-3">Cancel</a>
+}
+
+
+    @section Scripts {
+    <script>
+        const startDateStr = '@(Model.StartDate.HasValue ? Model.StartDate.Value.ToString("yyyy-MM-dd") : "")';
+        const startDate = new Date(startDateStr);
+        const ratePerDay = @Model.Vehicle.RatePerDay;
+
+        document.getElementById('newEndDate').addEventListener('input', function () {
+            const endDateVal = this.value;
+            const endDate = new Date(endDateVal);
+
+            if (isNaN(startDate.getTime()) || isNaN(endDate.getTime())) {
+                document.getElementById('totalDays').innerText = 'Invalid date';
+                document.getElementById('totalPayment').innerText = 'Invalid';
+                return;
+            }
+
+            let days = Math.floor((endDate - startDate) / (1000 * 60 * 60 * 24)) + 1;
+            days = Math.max(days, 1);
+
+            const total = days * ratePerDay;
+
+            document.getElementById('totalDays').innerText = days;
+            document.getElementById('totalPayment').innerText = total;
+        });
+    </script>
+}
+
+

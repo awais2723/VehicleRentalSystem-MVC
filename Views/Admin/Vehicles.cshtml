@@ -1,0 +1,59 @@
+﻿@model IEnumerable<VehicleRentalSystem.Models.Vehicle>
+@{
+    ViewBag.Title = "Vehicles";
+}
+
+<h2>Vehicles</h2>
+    <p>@Html.ActionLink("Back To Dashboard", "Dashboard", null, new { @class = "btn btn-success" })</p>
+<p>@Html.ActionLink("Add New Vehicle", "VehicleForm", null, new { @class = "btn btn-success" })</p>
+   
+    @if (TempData["DeleteConfirm"] != null && TempData["DeleteId"] != null)
+{
+    <div class="alert alert-warning">
+        <strong>@TempData["DeleteConfirm"]</strong>
+        <div>
+            @using (Html.BeginForm("DeleteConfirmed", "Admin", FormMethod.Post))
+            {
+                @Html.AntiForgeryToken()
+                <input type="hidden" name="id" value="@TempData["DeleteId"]" />
+                <button type="submit" class="btn btn-danger">Yes, Delete</button>
+                @Html.ActionLink("Cancel", "Vehicles", null, new { @class = "btn btn-default" })
+            }
+        </div>
+    </div>
+}
+    @if (TempData["DeleteError"] != null)
+{
+    <div class="alert alert-danger">@TempData["DeleteError"]</div>
+}
+
+<table class="table">
+   <tr>
+    <th>Vehicle ID</th>
+    <th>Name</th>
+    <th>Type</th>
+    <th>Model</th>
+    <th>Engine Capacity</th>
+    <th>RatePerDay</th>
+    <th>Status</th>
+    <th>Actions</th>
+</tr>
+
+@foreach (var v in Model) {
+    <tr>
+    <td>@v.Id</td>
+    <td>@v.Name</td>
+    <td>@v.Type</td>
+    <td>@v.Model</td>
+    <td>@v.EngineCapacity</td>
+    <td>@v.RatePerDay</td>
+    <td>@(v.IsAvailable.GetValueOrDefault() ? "Available" : "Booked")</td>
+
+    <td>
+        @Html.ActionLink("Edit", "EditVehicle", new { id = v.Id }) |
+        @Html.ActionLink("Delete", "DeleteVehicle", new { id = v.Id })
+    </td>
+</tr>
+
+}
+</table>

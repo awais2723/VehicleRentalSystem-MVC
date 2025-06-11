@@ -1,0 +1,588 @@
+﻿/* ========================================================================
+   GLOBAL STYLES (Applies to all pages)
+   ======================================================================== */
+
+html, body {
+    height: 100%; /* Ensures the background covers the entire viewport height */
+    margin: 0;
+}
+
+body {
+    font-family: 'Segoe UI', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    color: #34495e; /* A soft, dark grey for main text */
+    line-height: 1.6;
+    /* --- MODERN GRADIENT BACKGROUND --- */
+    background: linear-gradient(135deg, #e0eafc 0%, #cfdef3 100%); /* Softer, modern blue gradient */
+    /* You could also try:
+       background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%); // Very subtle grey-blue
+       background: linear-gradient(135deg, #fdfbfb 0%, #ebedee 100%); // Very subtle light grey
+       background: linear-gradient(135deg, #F0F2F5 0%, #f7f9fc 100%); // Another light, modern grey-blue
+    */
+    /* If you want the vibrant login page gradient everywhere:
+       background: linear-gradient(to bottom right, #6a11cb 0%, #2575fc 100%);
+    */
+    -webkit-font-smoothing: antialiased; /* Smoother font rendering */
+    -moz-osx-font-smoothing: grayscale;
+    /* For layout that might need to push a footer down */
+    display: flex;
+    flex-direction: column;
+}
+
+/* Base Link Styling */
+a {
+    color: #3498db; /* Primary link color */
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+    a:hover {
+        color: #2980b9; /* Darker blue on hover */
+        text-decoration: underline;
+    }
+
+/* Headings (h1, h2, etc.) */
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Segoe UI', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    color: #2c3e50; /* Darker color for headings */
+    margin-top: 20px;
+    margin-bottom: 15px;
+    font-weight: 600;
+}
+
+h1 {
+    font-size: 2.5rem;
+}
+
+h2 {
+    font-size: 2rem;
+}
+
+h3 {
+    font-size: 1.75rem;
+}
+
+h4 {
+    font-size: 1.5rem;
+}
+
+h5 {
+    font-size: 1.25rem;
+}
+
+h6 {
+    font-size: 1rem;
+}
+
+/* ========================================================================
+   LAYOUT & CONTAINER STYLES
+   ======================================================================== */
+
+/* Main content area padding below fixed navbar */
+.body-content {
+    margin-top: 70px; /* Adjust this if your navbar height changes */
+    padding: 30px 20px; /* More padding top/bottom and slight side padding */
+    flex-grow: 1; /* Allows content area to take up available space */
+    width: 100%; /* Ensures it respects flex container */
+    max-width: 1200px; /* Limit content width for readability on very wide screens */
+    margin-left: auto; /* Center content horizontally */
+    margin-right: auto; /* Center content horizontally */
+}
+
+/* Override Bootstrap's horizontal description list behavior */
+.dl-horizontal dt {
+    white-space: normal;
+}
+
+/* Footer Styling */
+footer {
+    padding: 20px 0;
+    margin-top: 30px;
+    border-top: 1px solid #e0e0e0;
+    color: #7f8c8d; /* Muted grey for footer text */
+    font-size: 0.9em;
+    text-align: center;
+}
+
+/* ========================================================================
+   FORMS & INPUTS (General Styling)
+   ======================================================================== */
+
+/* Set width on the form input elements */
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="number"],
+input[type="date"],
+select,
+textarea {
+    max-width: 100%; /* Ensure inputs fill their parent container width */
+    border-radius: 8px; /* More rounded corners */
+    padding: 10px 15px; /* Comfortable padding */
+    border: 1px solid #ced4da;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+    /* Focus state for inputs */
+    input[type="text"]:focus,
+    input[type="email"]:focus,
+    input[type="password"]:focus,
+    input[type="number"]:focus,
+    input[type="date"]:focus,
+    select:focus,
+    textarea:focus {
+        border-color: #80bdff; /* Bootstrap's primary focus color */
+        box-shadow: 0 0 0 0.25rem rgba(0, 123, 255, 0.25); /* Subtle glow */
+        outline: none;
+    }
+
+/* For labels within form groups */
+.form-label {
+    font-weight: 600;
+    color: #555;
+    margin-bottom: 5px;
+}
+
+/* General button styling for Bootstrap buttons (btn) */
+.btn {
+    font-weight: 600;
+    border-radius: 8px; /* Consistent button radius */
+    padding: 10px 20px;
+    transition: all 0.3s ease;
+    text-transform: uppercase; /* Slightly more modern look */
+    letter-spacing: 0.5px;
+}
+
+.btn-primary {
+    background-color: #3498db;
+    border-color: #3498db;
+}
+
+    .btn-primary:hover {
+        background-color: #2980b9;
+        border-color: #2980b9;
+        transform: translateY(-2px); /* Lift effect */
+        box-shadow: 0 4px 8px rgba(52, 152, 219, 0.3); /* Subtle glow */
+    }
+
+    .btn-primary:active {
+        transform: translateY(0);
+    }
+
+.btn-outline-primary {
+    color: #3498db;
+    border-color: #3498db;
+}
+
+    .btn-outline-primary:hover {
+        background-color: #3498db;
+        color: #fff;
+        transform: translateY(-2px);
+        box-shadow: 0 4px 8px rgba(52, 152, 219, 0.3);
+    }
+
+    .btn-outline-primary:active {
+        transform: translateY(0);
+    }
+
+/* Alert Messages (Bootstrap's defaults are good, but we can refine) */
+.alert {
+    border-radius: 8px;
+    font-weight: 500;
+}
+
+/* ========================================================================
+   NAVBAR STYLES (From previous improvement)
+   ======================================================================== */
+
+.navbar {
+    background-color: #2c3e50 !important; /* A darker, modern blue-grey for the navbar background */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15); /* More pronounced shadow for depth */
+    transition: background-color 0.3s ease;
+}
+
+.navbar-brand {
+    font-family: 'Segoe UI', sans-serif; /* A clean, modern font */
+    font-size: 1.6rem; /* Slightly larger for impact */
+    font-weight: 700; /* Bold */
+    color: #ecf0f1 !important; /* Light text color for contrast */
+    letter-spacing: 0.8px; /* Improved spacing */
+    transition: color 0.3s ease;
+}
+
+    .navbar-brand:hover {
+        color: #3498db !important; /* Highlight on hover */
+    }
+
+.navbar-toggler {
+    border-color: rgba(255, 255, 255, 0.2);
+    transition: all 0.3s ease;
+}
+
+    .navbar-toggler:focus {
+        box-shadow: 0 0 0 0.25rem rgba(52, 152, 219, 0.5); /* Focus glow */
+    }
+
+.navbar-toggler-icon {
+    filter: brightness(0) invert(1); /* Ensures the icon is white */
+}
+
+/* Nav Links */
+.navbar-nav .nav-link {
+    position: relative;
+    color: #ecf0f1 !important; /* Default link color */
+    padding: 0.75rem 1.2rem; /* More generous padding for better click area and spacing */
+    margin: 0 5px; /* Subtle spacing between links */
+    font-weight: 500;
+    transition: color 0.3s ease, background-color 0.3s ease;
+    border-radius: 6px; /* Slightly rounded corners for links */
+}
+
+    .navbar-nav .nav-link:hover {
+        color: #3498db !important; /* Highlight color on hover */
+        background-color: rgba(255, 255, 255, 0.1); /* Subtle background on hover */
+    }
+
+    /* Active Link Indicator */
+    .navbar-nav .nav-link::after {
+        content: '';
+        position: absolute;
+        bottom: 5px; /* Adjust position relative to padding */
+        left: 50%; /* Start from center */
+        transform: translateX(-50%); /* Center the line */
+        width: 0;
+        height: 3px;
+        background-color: #3498db; /* A vibrant blue for the active indicator */
+        border-radius: 2px;
+        transition: width 0.3s ease;
+    }
+
+    .navbar-nav .nav-link:hover::after,
+    .navbar-nav .nav-link.active::after {
+        width: calc(100% - 20px); /* Adjust width to account for padding, making it slightly shorter than full link */
+    }
+
+    .navbar-nav .nav-link.active {
+        color: #3498db !important; /* Active link color */
+        font-weight: 600;
+        background-color: rgba(255, 255, 255, 0.08); /* Subtle background for active */
+    }
+
+/* User Greeting */
+.navbar .user-greeting {
+    color: #ecf0f1; /* Consistent text color */
+    margin-right: 15px; /* Spacing before the logout button */
+    font-weight: 500;
+}
+
+    .navbar .user-greeting strong {
+        color: #3498db; /* Highlight username */
+        margin-left: 5px; /* Space between "Hello," and username */
+        font-weight: 700;
+    }
+
+/* Logout Button */
+.navbar .btn-outline-light {
+    border-color: #ecf0f1;
+    color: #ecf0f1;
+    transition: all 0.3s ease;
+    padding: 8px 18px; /* More padding for button */
+    border-radius: 25px; /* Pill-shaped button */
+}
+
+    .navbar .btn-outline-light:hover {
+        background-color: #3498db; /* Fill with primary blue on hover */
+        color: #fff;
+        border-color: #3498db;
+        transform: translateY(-2px); /* Lift effect */
+        box-shadow: 0 4px 10px rgba(52, 152, 219, 0.4); /* Glow effect */
+    }
+
+    .navbar .btn-outline-light:active {
+        transform: translateY(0);
+    }
+
+/* Login Button */
+.navbar .btn-light {
+    background-color: #3498db; /* Consistent primary color */
+    color: #fff;
+    transition: all 0.3s ease;
+    padding: 8px 18px; /* More padding for button */
+    border-radius: 25px; /* Pill-shaped button */
+    border: 1px solid #3498db; /* Solid border */
+}
+
+    .navbar .btn-light:hover {
+        background-color: #2980b9; /* Darker blue on hover */
+        color: #fff;
+        border-color: #2980b9;
+        transform: translateY(-2px); /* Lift effect */
+        box-shadow: 0 4px 10px rgba(52, 152, 219, 0.4); /* Glow effect */
+    }
+
+/* ========================================================================
+   LOGIN PAGE SPECIFIC STYLES (From previous improvement)
+   ======================================================================== */
+
+/* Note: The 'body' background for the login page is now handled by the global 'body' rule above.
+   If you want the vibrant gradient *only* for the login page, you'd apply it to a specific class
+   on the login page's outermost container instead of the body, e.g., '.login-page-wrapper { background: ... }'
+   and then ensure the login layout has that class.
+*/
+
+/* This class is used in the login page's HTML to center the card.
+   Ensure it plays well with the global body flex. */
+.d-flex.justify-content-center.align-items-center.min-vh-100 {
+    flex-grow: 1; /* Allows the login container to grow and push the footer down */
+}
+
+/* Apply to the card for a subtle lift on hover */
+.custom-login-card {
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+    border-radius: 12px; /* More rounded corners */
+    max-width: 380px; /* Adjusted slightly for better default on small screens */
+    width: 90%; /* Ensure it's responsive and doesn't overflow on very small screens */
+    padding: 30px; /* Slightly increased default padding */
+    background-color: #ffffff; /* Explicitly set card background to white */
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1); /* Standard shadow */
+}
+
+    .custom-login-card:hover {
+        transform: translateY(-5px); /* Slight lift */
+        box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15) !important; /* Slightly more pronounced shadow */
+    }
+
+/* Custom styling for the login button hover */
+.custom-login-button {
+    transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+}
+
+    .custom-login-button:hover {
+        background-color: #0d6efd; /* Darken primary blue a bit */
+        transform: translateY(-2px); /* Slight lift */
+        box-shadow: 0 0.5rem 1rem rgba(0, 123, 255, 0.25); /* Subtle blue glow shadow */
+    }
+
+    .custom-login-button:active {
+        transform: translateY(0);
+        box-shadow: none;
+    }
+
+/* Optional: Subtle hover for form inputs */
+.form-control:focus {
+    box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25);
+}
+
+/* Optional: Hover for forgot password link */
+.custom-forgot-password {
+    transition: color 0.3s ease;
+}
+
+    .custom-forgot-password:hover {
+        color: #0d6efd !important; /* Change to primary blue on hover */
+        text-decoration: underline !important;
+    }
+
+/* --- Responsive Adjustments for Desktop Width --- */
+@media (min-width: 768px) { /* Medium devices (tablets) and up */
+    .custom-login-card {
+        max-width: 500px; /* Increased width for tablets and desktops */
+        padding: 40px; /* More padding for a roomier feel */
+    }
+}
+
+@media (min-width: 992px) { /* Large devices (desktops) and up */
+    .custom-login-card {
+        max-width: 550px; /* Even wider for larger desktops */
+        padding: 50px; /* Even more padding */
+    }
+}
+
+@media (min-width: 1200px) { /* Extra large devices (large desktops) and up */
+    .custom-login-card {
+        max-width: 600px; /* Max width for very large screens */
+    }
+}
+
+
+/* ========================================================================
+   DASHBOARD SPECIFIC STYLES
+   ======================================================================== */
+
+.dashboard-card {
+    background-color: #ffffff; /* White background for cards */
+    border: none !important; /* Remove default card border */
+    border-radius: 12px; /* Consistent rounded corners */
+    overflow: hidden; /* Ensures border-start doesn't bleed */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+    .dashboard-card:hover {
+        transform: translateY(-5px); /* Lift effect on hover */
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15) !important; /* More pronounced shadow */
+    }
+
+    .dashboard-card .card-body {
+        padding: 2rem; /* More internal padding for cards */
+    }
+
+    .dashboard-card .card-title {
+        font-weight: 500;
+        font-size: 1.1rem;
+        color: #7f8c8d !important; /* Muted text for title */
+    }
+
+    .dashboard-card .display-6 {
+        font-size: 3rem; /* Slightly larger for impact */
+        color: #2c3e50; /* Darker number color */
+        line-height: 1.2;
+    }
+
+    /* Ensure icons in dashboard cards are colored correctly */
+    .dashboard-card .text-primary {
+        color: #3498db !important;
+    }
+
+    .dashboard-card .text-info {
+        color: #0dcaf0 !important;
+    }
+    /* Bootstrap's default info */
+    .dashboard-card .text-success {
+        color: #198754 !important;
+    }
+/* Bootstrap's default success */
+
+/* Dashboard action buttons (e.g., "Pending Returns") */
+.dashboard-action-btn {
+    border-radius: 10px; /* Rounded corners for action buttons */
+    transition: all 0.3s ease;
+    min-height: 100px; /* Ensures consistent height */
+    justify-content: center; /* Center content vertically */
+    padding: 1rem; /* Adjust padding for better look */
+    font-weight: 600;
+    font-size: 1.1rem;
+    color: #2c3e50; /* Default text color for these buttons */
+}
+
+    .dashboard-action-btn i {
+        font-size: 2.5rem; /* Larger icons for action buttons */
+        margin-bottom: 0.5rem;
+        color: inherit; /* Inherit color from parent button */
+    }
+
+/* Specific color adjustments for outline buttons on dashboard */
+.btn-outline-warning {
+    color: #ffc107; /* Bootstrap's default yellow */
+    border-color: #ffc107;
+}
+
+    .btn-outline-warning:hover {
+        background-color: #ffc107;
+        color: #212529 !important; /* Dark text on hover */
+        box-shadow: 0 4px 8px rgba(255, 193, 7, 0.3);
+    }
+
+.btn-outline-dark {
+    color: #343a40; /* Bootstrap's default dark */
+    border-color: #343a40;
+}
+
+    .btn-outline-dark:hover {
+        background-color: #343a40;
+        color: #fff !important;
+        box-shadow: 0 4px 8px rgba(52, 58, 64, 0.3);
+    }
+
+.btn-outline-info {
+    color: #0dcaf0;
+    border-color: #0dcaf0;
+}
+
+    .btn-outline-info:hover {
+        background-color: #0dcaf0;
+        color: #212529 !important;
+        box-shadow: 0 4px 8px rgba(13, 202, 240, 0.3);
+    }
+
+.btn-outline-secondary { /* For 'View Customers' button */
+    color: #6c757d;
+    border-color: #6c757d;
+}
+
+    .btn-outline-secondary:hover {
+        background-color: #6c757d;
+        color: #fff !important;
+        box-shadow: 0 4px 8px rgba(108, 117, 125, 0.3);
+    }
+
+
+/* Adjustments for the new primary button style in cards */
+.dashboard-card .btn-primary {
+    background-color: #3498db;
+    border-color: #3498db;
+    font-weight: 500; /* Slightly less bold than global btn */
+    padding: 0.6rem 1.2rem; /* Adjust padding */
+    border-radius: 8px; /* Consistent rounded corners */
+}
+
+    .dashboard-card .btn-primary:hover {
+        background-color: #2980b9;
+        border-color: #2980b9;
+        transform: translateY(-2px);
+        box-shadow: 0 4px 8px rgba(52, 152, 219, 0.3);
+    }
+
+/* Custom styling for info button within dashboard card */
+.dashboard-card .btn-info {
+    background-color: #0dcaf0; /* Bootstrap's default info color */
+    border-color: #0dcaf0;
+    font-weight: 500;
+    padding: 0.6rem 1.2rem;
+    border-radius: 8px;
+    color: #212529; /* Dark text for light button */
+}
+
+    .dashboard-card .btn-info:hover {
+        background-color: #0baed3; /* Slightly darker info on hover */
+        border-color: #0baed3;
+        transform: translateY(-2px);
+        box-shadow: 0 4px 8px rgba(13, 202, 240, 0.3);
+    }
+
+.dashboard-card .btn-success {
+    background-color: #198754;
+    border-color: #198754;
+    font-weight: 500;
+    padding: 0.6rem 1.2rem;
+    border-radius: 8px;
+}
+
+    .dashboard-card .btn-success:hover {
+        background-color: #157347;
+        border-color: #157347;
+        transform: translateY(-2px);
+        box-shadow: 0 4px 8px rgba(25, 135, 84, 0.3);
+    }
+
+/* Responsive adjustments for dashboard buttons */
+@media (max-width: 767.98px) {
+    .dashboard-action-btn {
+        min-height: 80px; /* Slightly smaller height on mobile */
+        font-size: 1rem;
+        padding: 0.8rem;
+    }
+
+        .dashboard-action-btn i {
+            font-size: 2rem;
+        }
+
+    .d-flex.justify-content-between.align-items-center.mb-4 {
+        flex-direction: column;
+        align-items: flex-start !important; /* Align items to start */
+        gap: 15px; /* Space between title and buttons */
+    }
+
+    .d-flex.gap-3 {
+        width: 100%; /* Make button group full width */
+        justify-content: flex-start; /* Align buttons to start */
+    }
+}

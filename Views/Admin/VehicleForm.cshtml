@@ -1,0 +1,48 @@
+﻿@model VehicleRentalSystem.Models.Vehicle
+@{
+    ViewBag.Title = Model?.Id > 0 ? "Edit Vehicle" : "Add New Vehicle";
+    var isEdit = Model != null && Model.Id > 0;
+    var formAction = isEdit ? "EditVehicle" : "CreateVehicle";
+}
+
+<h2>@ViewBag.Title</h2>
+
+@using (Html.BeginForm(formAction, "Admin", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(m => m.Id)
+
+    <div class="form-horizontal">
+        <div class="form-group">
+            @Html.LabelFor(m => m.Name)
+            @Html.TextBoxFor(m => m.Name, new { @class = "form-control" })
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(m => m.Type)
+            @Html.TextBoxFor(m => m.Type, new { @class = "form-control" })
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(m => m.RatePerDay)
+            @Html.TextBoxFor(m => m.RatePerDay, new { @class = "form-control" })
+        </div>
+
+        <div class="form-group">
+            @Html.Label("Upload Image")
+            <input type="file" name="imageFile" class="form-control" />
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(m => m.Model)
+            @Html.TextBoxFor(m => m.Model, new { @class = "form-control" })
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(m => m.EngineCapacity)
+            @Html.TextBoxFor(m => m.EngineCapacity, new { @class = "form-control" })
+        </div>
+
+        <button type="submit" class="btn btn-primary">Save</button>
+    </div>
+}

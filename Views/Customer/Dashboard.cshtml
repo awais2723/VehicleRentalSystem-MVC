@@ -1,0 +1,46 @@
+﻿
+@model List<VehicleRentalSystem.Models.Vehicle>
+@using System.Linq
+
+@{
+    ViewBag.Title = "Customer Dashboard";
+}
+
+<h2>Welcome to Your Dashboard</h2>
+
+<nav class="navbar navbar-default mt-3">
+    <div class="container-fluid">
+        <ul class="nav navbar-nav">
+            <li>@Html.ActionLink("Available Vehicles", "AvailableVehicles", "Customer")</li>
+            <li>@Html.ActionLink("Booked Vehicles", "MyBookings", "Customer")</li>
+            <li>@Html.ActionLink("Booking History", "BookingHistory", "Customer")</li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+            <li>@Html.ActionLink("Logout", "Logout", "Account")</li>
+        </ul>
+    </div>
+</nav>
+
+@if (Model != null && Model.Any())
+{
+    <h3>Available Vehicles</h3>
+    <div class="row">
+        @foreach (var vehicle in Model)
+        {
+            <div class="col-md-4">
+                <div class="card p-3 shadow-sm bg-light rounded mb-3">
+                    <h4>@vehicle.Name</h4>
+                    <p>Type: @vehicle.Type</p>
+                    <p>Rate/Day: ₹@vehicle.RatePerDay</p>
+                    <p>Model: @vehicle.Model</p>
+                    <p>Engine: @vehicle.EngineCapacity</p>
+                    <a href="@Url.Action("Book", "Customer", new { id = vehicle.Id })" class="btn btn-primary btn-sm">Book Now</a>
+                </div>
+            </div>
+        }
+    </div>
+}
+else
+{
+    <div class="alert alert-info mt-3">No available vehicles at the moment.</div>
+}

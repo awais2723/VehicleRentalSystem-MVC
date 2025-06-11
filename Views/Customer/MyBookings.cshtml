@@ -1,0 +1,82 @@
+﻿@model IEnumerable<VehicleRentalSystem.Models.Booking>
+
+@{
+    ViewBag.Title = "My Bookings";
+}
+
+<h2>My Bookings</h2>
+
+@if (TempData["Message"] != null)
+{
+    <div class="alert alert-info">@TempData["Message"]</div>
+}
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Vehicle</th>
+            <th>Start Date</th>
+            <th>Rate Per Day</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var booking in Model)
+        {
+            if (booking.StartDate.HasValue && booking.Vehicle != null)
+            {
+                <tr>
+                    <td>@booking.Vehicle.Name</td>
+                    <td>@booking.StartDate.Value.ToString("yyyy-MM-dd")</td>
+                    <td>@booking.Vehicle.RatePerDay</td>
+                    <td>
+                        @if (booking.IsReturned != true && booking.ReturnPending == true)
+                        {
+                            <form id="returnForm-@booking.Id" action="@Url.Action("RequestReturn", "Customer")" method="post" style="display:inline;">
+                                @Html.AntiForgeryToken()
+                                <input type="hidden" name="id" value="@booking.Id" />
+                                <input type="hidden" name="confirmedEndDate" id="endDateInput-@booking.Id" />
+                                <button type="button" class="btn btn-sm btn-danger" onclick="confirmReturn(@booking.Id, '@booking.StartDate.Value.ToString("yyyy-MM-dd")', @booking.Vehicle.RatePerDay)">Return</button>
+                            </form>
+                        }
+                        else
+                        {
+                            <span class="text-muted">return pending</span>
+                        }
+                    </td>
+                </tr>
+            }
+        }
+    </tbody>
+</table>
+
+<p>
+    @Html.ActionLink("Back to Dashboard", "Dashboard", null, new { @class = "btn btn-primary" })
+</p>
+
+@section Scripts {
+<script>
+    function confirmReturn(bookingId, startDateStr, ratePerDay) {
+        const startDate = new Date(startDateStr);
+        let endDateStr = prompt("Enter End Date (YYYY-MM-DD):", new Date().toISOString().slice(0, 10));
+        if (!endDateStr) return;
+
+        const endDate = new Date(endDateStr);
+        if (isNaN(endDate.getTime()) || endDate < startDate) {
+            alert("Invalid End Date.");
+            return;
+        }
+
+        const diffTime = Math.abs(endDate - startDate);
+        const totalDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24)) + 1;
+        const totalCost = totalDays * ratePerDay;
+
+        const confirmMsg = `Confirm Return:\n\nStart Date: ${startDateStr}\nEnd Date: ${endDateStr}\nTotal Days: ${totalDays}\nRate/Day: ${ratePerDay}\nTotal Cost: ${totalCost}\n\nProceed?`;
+
+        if (confirm(confirmMsg)) {
+            document.getElementById("endDateInput-" + bookingId).value = endDateStr;
+            document.getElementById("returnForm-" + bookingId).submit();
+        }
+    }
+</script>
+}

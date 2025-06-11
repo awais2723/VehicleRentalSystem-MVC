@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="8766c633a6dc4a76b02362e343b18f90" Name="Diagram1" ZoomLevel="83">
+        <EntityTypeShape EntityType="VehicleRentalDbModel.Vehicle" Width="1.5" PointX="6.75" PointY="2.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="VehicleRentalDbModel.BookingHistory" Width="1.5" PointX="6.875" PointY="6.5" />
+        <EntityTypeShape EntityType="VehicleRentalDbModel.Booking" Width="1.5" PointX="3.625" PointY="2.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="VehicleRentalDbModel.User" Width="1.5" PointX="3.5" PointY="6.75" />
+        <AssociationConnector Association="VehicleRentalDbModel.FK__BookingHi__UserI__5070F446" />
+        <AssociationConnector Association="VehicleRentalDbModel.FK__Bookings__UserId__4BAC3F29" />
+        <AssociationConnector Association="VehicleRentalDbModel.FK__Bookings__Vehicl__4AB81AF0" />
+        </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

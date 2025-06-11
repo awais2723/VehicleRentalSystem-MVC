@@ -1,0 +1,42 @@
+﻿@{
+    ViewBag.Title = "Login";
+}
+
+<div class="d-flex justify-content-center align-items-center min-vh-100 bg-light">
+    <div class="card p-4 shadow-lg custom-login-card">
+        <div class="card-body">
+            <h2 class="card-title text-center mb-4 text-primary">Welcome Back!</h2>
+            <p class="card-text text-center text-muted mb-4">Please log in to your account.</p>
+
+            @using (Html.BeginForm(null, null, FormMethod.Post, new { @class = "needs-validation", novalidate = "novalidate" })) {
+                <div class="mb-3">
+                    <label for="username" class="form-label">Username</label>
+                    <input type="text" id="username" name="username" class="form-control" placeholder="Enter your username" required>
+                    <div class="invalid-feedback">
+                        Please enter your username.
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label for="password" class="form-label">Password</label>
+                    <input type="password" id="password" name="password" class="form-control" placeholder="Enter your password" required>
+                    <div class="invalid-feedback">
+                        Please enter your password.
+                    </div>
+                </div>
+                <div class="d-grid gap-2">
+                    <button type="submit" class="btn btn-primary btn-lg mt-3 custom-login-button">Login</button>
+                </div>
+            }
+
+            @if (ViewBag.Message != null) {
+                <div class="alert alert-danger mt-3" role="alert">
+                    @ViewBag.Message
+                </div>
+            }
+
+            <div class="text-center mt-3">
+                <a href="#" class="text-decoration-none text-muted custom-forgot-password">Forgot Password?</a>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,27 @@
+﻿@model IEnumerable<VehicleRentalSystem.Models.Booking>
+
+<h2>Booked Vehicles</h2>
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Vehicle ID</th>
+            <th>Vehicle Name</th>
+            <th>Customer</th>
+            <th>Phone</th>
+            <th>Start Date</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var booking in Model)
+        {
+            <tr>
+                <td>@booking.Vehicle.Id</td>
+                <td>@booking.Vehicle.Name</td>
+                <td>@booking.User.Username</td>
+                <td>@booking.User.Phone</td>
+                <td>@(booking.StartDate.HasValue ? booking.StartDate.Value.ToShortDateString() : "N/A")</td>
+            </tr>
+        }
+    </tbody>
+</table>
