@@ -1,0 +1,131 @@
+﻿@model IEnumerable<VehicleRentalSystem.ViewModels.AllVehicleSummaryViewModel>
+@using System.Linq; // Ensure this is present for Any()
+
+@{
+    ViewBag.Title = "Vehicle Performance Report";
+}
+
+<div class="container my-5">
+    <h2 class="mb-4 text-dark fw-bold">Vehicle Performance Report</h2>
+
+    <div class="card shadow-sm p-4 mb-4">
+        <h4 class="mb-3 text-dark">Top 10 Most Booked Vehicles</h4>
+        <canvas id="vehicleChart" style="max-height: 400px;"></canvas> @* Changed ID from vehicleTypeChart for clarity *@
+    </div>
+
+    <div class="card shadow-sm p-4">
+        <h4 class="mb-3 text-dark">All Vehicle Usage Summary</h4>
+        @if (!Model.Any())
+        {
+            <div class="alert alert-info" role="alert">
+                No vehicle data available for this report.
+            </div>
+        }
+        else
+        {
+            <div class="table-responsive">
+                <table class="table table-hover table-striped">
+                    <thead class="bg-light">
+                        <tr>
+                            <th>Vehicle Name</th>
+                            <th>Model</th>
+                            <th>Type</th> @* Added Type column *@
+                            <th>Total Bookings</th>
+                            <th>Total Revenue</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>@item.VehicleName</td>
+                                <td>@item.VehicleModel</td>
+                                <td>@item.VehicleType</td> @* Display Vehicle Type *@
+                                <td>@item.TotalBookings</td>
+                                <td>@item.TotalRevenue.ToString("N")</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        }
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Data for Top 10 Most Booked Vehicles Chart
+            var chartLabels = @Html.Raw(Json.Encode(ViewBag.ChartLabels));
+            var chartData = @Html.Raw(Json.Encode(ViewBag.ChartData));
+
+            var ctxVehicleChart = document.getElementById('vehicleChart').getContext('2d');
+            new Chart(ctxVehicleChart, {
+                type: 'bar',
+                data: {
+                    labels: chartLabels,
+                    datasets: [{
+                        label: 'Number of Bookings',
+                        data: chartData,
+                        backgroundColor: [
+                            'rgba(52, 152, 219, 0.7)', // Primary blue
+                            'rgba(230, 126, 34, 0.7)', // Orange
+                            'rgba(46, 204, 113, 0.7)', // Green
+                            'rgba(155, 89, 182, 0.7)', // Purple
+                            'rgba(26, 188, 156, 0.7)', // Teal
+                            'rgba(241, 196, 15, 0.7)', // Yellow
+                            'rgba(231, 76, 60, 0.7)', // Red
+                            'rgba(149, 165, 166, 0.7)',// Grey
+                            'rgba(52, 73, 94, 0.7)', // Dark Blue
+                            'rgba(127, 140, 141, 0.7)' // Light Grey
+                        ],
+                        borderColor: [
+                            'rgba(52, 152, 219, 1)',
+                            'rgba(230, 126, 34, 1)',
+                            'rgba(46, 204, 113, 1)',
+                            'rgba(155, 89, 182, 1)',
+                            'rgba(26, 188, 156, 1)',
+                            'rgba(241, 196, 15, 1)',
+                            'rgba(231, 76, 60, 1)',
+                            'rgba(149, 165, 166, 1)',
+                            'rgba(52, 73, 94, 1)',
+                            'rgba(127, 140, 141, 1)'
+                        ],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            title: {
+                                display: true,
+                                text: 'Number of Bookings'
+                            },
+                            ticks: {
+                                precision: 0 // Ensures integer values for vertical axis
+                            }
+                        },
+                        x: {
+                            title: {
+                                display: true,
+                                text: 'Vehicle Name (Top 10)'
+                            }
+                        }
+                    },
+                    plugins: {
+                        legend: {
+                            display: false // No legend for single dataset
+                        },
+                        title: {
+                            display: false,
+                            text: 'Top 10 Most Booked Vehicles'
+                        }
+                    }
+                }
+            });
+        });
+    </script>
+}

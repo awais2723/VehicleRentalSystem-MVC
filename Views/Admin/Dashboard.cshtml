@@ -6,9 +6,16 @@
     <div class="d-flex justify-content-between align-items-center mb-4">
         <h2 class="text-dark fw-bold mb-0">Admin Dashboard</h2>
         <div class="d-flex gap-3">
-            <a href="/Admin/PendingReturns" class="btn btn-warning d-flex align-items-center">
-                <i class="bi bi-arrow-counterclockwise me-2"></i> Return Requests
-            </a>
+            <a href="/Admin/PendingReturns" class="btn btn-warning d-flex align-items-center position-relative">
+    <i class="bi bi-arrow-counterclockwise me-2"></i> Return Requests
+    @if (ViewBag.PendingReturnRequests > 0)
+    {
+        <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger return-badge">
+            @ViewBag.PendingReturnRequests
+            <span class="visually-hidden">pending requests</span>
+        </span>
+    }
+</a>
             <a href="/Admin/ViewCustomers" class="btn btn-outline-secondary d-flex align-items-center">
                 <i class="bi bi-people me-2"></i> View Customers
             </a>

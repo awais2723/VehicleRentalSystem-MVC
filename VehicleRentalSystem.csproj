@@ -165,6 +165,7 @@
       <DependentUpon>VehicleRentalModel.edmx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewModels\AllVehicleSummaryViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap-grid.css" />
@@ -220,6 +221,7 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Compile Include="ViewModels\CustomerActivityReportViewModel.cs" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -247,6 +249,11 @@
     <Content Include="Views\Admin\PendingReturns.cshtml" />
     <Content Include="Views\Customer\BookingHistory.cshtml" />
     <Content Include="Views\Customer\AvailableVehicles.cshtml" />
+    <Content Include="Views\Admin\ViewCustomers.cshtml" />
+    <Content Include="Views\Admin\EditCustomer.cshtml" />
+    <Content Include="Views\Admin\VehiclePerformanceReport.cshtml" />
+    <Content Include="Views\Admin\FinancialOverviewReport.cshtml" />
+    <Content Include="Views\Admin\CustomerActivityReport.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

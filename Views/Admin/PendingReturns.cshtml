@@ -4,50 +4,48 @@
     ViewBag.Title = "Pending Return Requests";
 }
 
-<h2>Pending Return Requests</h2>
+<div class="container my-5">
+    <h2 class="text-dark fw-bold mb-4">@ViewBag.Title</h2>
 
-@if (!Model.Any())
-{
-    <div class="alert alert-info">No pending return requests found.</div>
-}
-else
-{
-    <table class="table table-bordered table-hover mt-3">
-        <thead class="thead-dark">
-            <tr>
-                <th>#</th>
-                <th>Vehicle</th>
-                <th>Customer</th>
-                <th>Start Date</th>
-                <th>End Date</th>
-                <th>Total Amount</th>
-                <th>Action</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var item in Model.Select((booking, index) => new { booking, index }))
-            {
-                <tr>
-                    <td>@(item.index + 1)</td>
-               
-                    <td>@item.booking.Vehicle.Name</td>
-                    <td>@item.booking.User.Username</td>
-                    <td>@(item.booking.StartDate.HasValue ? item.booking.StartDate.Value.ToShortDateString() : "N/A")</td>
-                    <td>@(item.booking.EndDate.HasValue ? item.booking.EndDate.Value.ToShortDateString() : "N/A")</td>
-                    
-                           <td>@(item.booking.TotalAmount?.ToString("C") ?? "N/A")</td>
-
-
-
-
-
-                    <td>
-                        <a href="@Url.Action("ReviewReturn", "Admin", new { id = item.booking.Id })" class="btn btn-sm btn-warning">
-                            Review
-                        </a>
-                    </td>
-                </tr>
-            }
-        </tbody>
-    </table>
-}
+    <div class="view-card p-0">
+        @if (!Model.Any())
+        {
+            <div class="alert alert-info m-4" role="alert">
+                No pending return requests found.
+            </div>
+        }
+        else
+        {
+            <div class="table-responsive">
+                <table class="table table-hover"> <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Vehicle</th>
+                            <th>Customer</th>
+                            <th>Start Date</th>
+                            <th>End Date</th>
+                            <th class="text-end">Total Amount</th> <th class="text-center">Action</th> </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model.Select((booking, index) => new { booking, index }))
+                        {
+                            <tr>
+                                <td>@(item.index + 1)</td>
+                                <td>@item.booking.Vehicle.Name</td>
+                                <td>@item.booking.User.Username</td>
+                                <td>@(item.booking.StartDate.HasValue ? item.booking.StartDate.Value.ToShortDateString() : "N/A")</td>
+                                <td>@(item.booking.EndDate.HasValue ? item.booking.EndDate.Value.ToShortDateString() : "N/A")</td>
+                                <td class="text-end">@(item.booking.TotalAmount?.ToString("N") ?? "N/A")</td>
+                                <td class="text-center">
+                                    <a href="@Url.Action("ReviewReturn", "Admin", new { id = item.booking.Id })" class="btn btn-sm btn-warning d-inline-flex align-items-center" data-bs-toggle="tooltip" data-bs-placement="top" title="Review Return">
+                                        <i class="bi bi-search me-1"></i> Review
+                                    </a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        }
+    </div>
+</div>

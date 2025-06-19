@@ -29,22 +29,30 @@
                     <td>@booking.Vehicle.Name</td>
                     <td>@booking.StartDate.Value.ToString("yyyy-MM-dd")</td>
                     <td>@booking.Vehicle.RatePerDay</td>
-                    <td>
-                        @if (booking.IsReturned != true && booking.ReturnPending == true)
-                        {
-                            <form id="returnForm-@booking.Id" action="@Url.Action("RequestReturn", "Customer")" method="post" style="display:inline;">
-                                @Html.AntiForgeryToken()
-                                <input type="hidden" name="id" value="@booking.Id" />
-                                <input type="hidden" name="confirmedEndDate" id="endDateInput-@booking.Id" />
-                                <button type="button" class="btn btn-sm btn-danger" onclick="confirmReturn(@booking.Id, '@booking.StartDate.Value.ToString("yyyy-MM-dd")', @booking.Vehicle.RatePerDay)">Return</button>
-                            </form>
-                        }
-                        else
-                        {
-                            <span class="text-muted">return pending</span>
-                        }
-                    </td>
-                </tr>
+                  <td>
+                                    @if (booking.IsReturned == true)
+                                    {
+                                        <span class="badge bg-success">Returned</span>
+                                    }
+                                    else if (booking.ReturnPending == true)
+                                    {
+                                        <span class="badge bg-warning text-dark">Return Pending</span>
+                                    }
+                                    else // This means IsReturned is false and ReturnPending is false
+                                    {
+                                        <form id="returnForm-@booking.Id" action="@Url.Action("RequestReturn", "Customer")" method="post" style="display:inline;">
+                                            @Html.AntiForgeryToken()
+                                            <input type="hidden" name="id" value="@booking.Id" />
+                                            <input type="hidden" name="confirmedEndDate" id="endDateInput-@booking.Id" />
+                                            <button type="button" class="btn btn-sm btn-danger" 
+                                                    onclick="confirmReturn(@booking.Id, '@booking.StartDate.Value.ToString("yyyy-MM-dd")', @booking.Vehicle.RatePerDay)">
+                                                Return Vehicle
+                                            </button>
+                                        </form>
+                                    }
+                                </td>
+                            </tr>
+
             }
         }
     </tbody>

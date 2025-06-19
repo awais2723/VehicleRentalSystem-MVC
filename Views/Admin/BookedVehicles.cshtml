@@ -1,27 +1,44 @@
 ﻿@model IEnumerable<VehicleRentalSystem.Models.Booking>
 
-<h2>Booked Vehicles</h2>
+<div class="container my-5">
+    <h2 class="text-dark fw-bold mb-4">Booked Vehicles</h2>
 
-<table class="table table-bordered">
-    <thead>
-        <tr>
-            <th>Vehicle ID</th>
-            <th>Vehicle Name</th>
-            <th>Customer</th>
-            <th>Phone</th>
-            <th>Start Date</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var booking in Model)
+    <div class="view-card p-0">
+        @if (!Model.Any())
         {
-            <tr>
-                <td>@booking.Vehicle.Id</td>
-                <td>@booking.Vehicle.Name</td>
-                <td>@booking.User.Username</td>
-                <td>@booking.User.Phone</td>
-                <td>@(booking.StartDate.HasValue ? booking.StartDate.Value.ToShortDateString() : "N/A")</td>
-            </tr>
+            <div class="alert alert-info m-4" role="alert">
+                No vehicles are currently booked.
+            </div>
         }
-    </tbody>
-</table>
+        else
+        {
+            <div class="table-responsive">
+                <table class="table table-hover"> <thead>
+                        <tr>
+                            <th>Vehicle ID</th>
+                            <th>Vehicle Name</th>
+                            <th>Customer</th>
+                            <th>Phone</th>
+                            <th>Start Date</th>
+                           
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var booking in Model)
+                        {
+                            <tr>
+                                <td>@booking.Vehicle.Id</td>
+                                <td>@booking.Vehicle.Name</td>
+                                <td>@booking.User.Username</td>
+                                <td>@booking.User.Phone</td>
+                                <td>@(booking.StartDate.HasValue ? booking.StartDate.Value.ToShortDateString() : "N/A")</td>
+                               
+                                
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        }
+    </div>
+</div>

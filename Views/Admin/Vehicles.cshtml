@@ -3,57 +3,84 @@
     ViewBag.Title = "Vehicles";
 }
 
-<h2>Vehicles</h2>
-    <p>@Html.ActionLink("Back To Dashboard", "Dashboard", null, new { @class = "btn btn-success" })</p>
-<p>@Html.ActionLink("Add New Vehicle", "VehicleForm", null, new { @class = "btn btn-success" })</p>
-   
-    @if (TempData["DeleteConfirm"] != null && TempData["DeleteId"] != null)
-{
-    <div class="alert alert-warning">
-        <strong>@TempData["DeleteConfirm"]</strong>
-        <div>
-            @using (Html.BeginForm("DeleteConfirmed", "Admin", FormMethod.Post))
-            {
-                @Html.AntiForgeryToken()
-                <input type="hidden" name="id" value="@TempData["DeleteId"]" />
-                <button type="submit" class="btn btn-danger">Yes, Delete</button>
-                @Html.ActionLink("Cancel", "Vehicles", null, new { @class = "btn btn-default" })
-            }
-        </div>
+<div class="container-fluid">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2 class="mb-0">Vehicle Management</h2>
+        @Html.ActionLink("Add New Vehicle", "VehicleForm", null, new { @class = "btn btn-success" })
     </div>
-}
+
+    @if (TempData["DeleteConfirm"] != null && TempData["DeleteId"] != null)
+    {
+        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+            <h4 class="alert-heading">Confirm Deletion!</h4>
+            <p><strong>@TempData["DeleteConfirm"]</strong></p>
+            <hr>
+            <div class="d-flex justify-content-end">
+                @using (Html.BeginForm("DeleteConfirmed", "Admin", FormMethod.Post, new { @class = "me-2" }))
+                {
+                    @Html.AntiForgeryToken()
+                    <input type="hidden" name="id" value="@TempData["DeleteId"]" />
+                    <button type="submit" class="btn btn-danger">Yes, Delete</button>
+                }
+                @Html.ActionLink("Cancel", "Vehicles", null, new { @class = "btn btn-secondary" })
+            </div>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    }
+
     @if (TempData["DeleteError"] != null)
-{
-    <div class="alert alert-danger">@TempData["DeleteError"]</div>
-}
+    {
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            @TempData["DeleteError"]
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    }
 
-<table class="table">
-   <tr>
-    <th>Vehicle ID</th>
-    <th>Name</th>
-    <th>Type</th>
-    <th>Model</th>
-    <th>Engine Capacity</th>
-    <th>RatePerDay</th>
-    <th>Status</th>
-    <th>Actions</th>
-</tr>
-
-@foreach (var v in Model) {
-    <tr>
-    <td>@v.Id</td>
-    <td>@v.Name</td>
-    <td>@v.Type</td>
-    <td>@v.Model</td>
-    <td>@v.EngineCapacity</td>
-    <td>@v.RatePerDay</td>
-    <td>@(v.IsAvailable.GetValueOrDefault() ? "Available" : "Booked")</td>
-
-    <td>
-        @Html.ActionLink("Edit", "EditVehicle", new { id = v.Id }) |
-        @Html.ActionLink("Delete", "DeleteVehicle", new { id = v.Id })
-    </td>
-</tr>
-
-}
-</table>
+    @if (!Model.Any())
+    {
+        <div class="alert alert-info" role="alert">
+            No vehicles found. Click "Add New Vehicle" to get started!
+        </div>
+    }
+    else
+    {
+        <div class="table-responsive">
+            <table class="table table-hover table-striped border">
+                <thead class="table-dark">
+                    <tr>
+                        <th>Vehicle ID</th>
+                        <th>Name</th>
+                        <th>Type</th>
+                        <th>Model</th>
+                        <th>Engine Capacity</th>
+                        <th>Rate Per Day</th>
+                        <th>Status</th>
+                        <th class="text-center">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var v in Model)
+                    {
+                        <tr>
+                            <td>@v.Id</td>
+                            <td>@v.Name</td>
+                            <td>@v.Type</td>
+                            <td>@v.Model</td>
+                            <td>@v.EngineCapacity</td>
+                            <td>@v.RatePerDay</td>
+                           <td>
+    @(v.IsAvailable.GetValueOrDefault() ? Html.Raw("<span class='badge bg-success'>Available</span>") : Html.Raw("<span class='badge bg-danger'>Booked</span>"))
+</td>
+                            <td class="text-center">
+                                <div class="btn-group" role="group" aria-label="Vehicle Actions">
+                                    @Html.ActionLink("Edit", "EditVehicle", new { id = v.Id }, new { @class = "btn btn-sm btn-primary me-1" })
+                                    @Html.ActionLink("Delete", "DeleteVehicle", new { id = v.Id }, new { @class = "btn btn-sm btn-danger" })
+                                </div>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    }
+</div>

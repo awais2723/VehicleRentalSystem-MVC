@@ -56,8 +56,7 @@ public class CustomerController : Controller
 
             booking.UserId = userId;
             booking.StartDate = DateTime.Now;
-            booking.IsReturned = false;
-            booking.ReturnPending = true;
+       
 
             var vehicle = db.Vehicles.Find(booking.VehicleId);
             

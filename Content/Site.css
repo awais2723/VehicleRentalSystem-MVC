@@ -10,29 +10,22 @@ html, body {
 body {
     font-family: 'Segoe UI', 'Helvetica Neue', Helvetica, Arial, sans-serif;
     color: #34495e; /* A soft, dark grey for main text */
-    line-height: 1.6;
+    line-height: 1.5; /* Reduced line height */
     /* --- MODERN GRADIENT BACKGROUND --- */
     background: linear-gradient(135deg, #e0eafc 0%, #cfdef3 100%); /* Softer, modern blue gradient */
-    /* You could also try:
-       background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%); // Very subtle grey-blue
-       background: linear-gradient(135deg, #fdfbfb 0%, #ebedee 100%); // Very subtle light grey
-       background: linear-gradient(135deg, #F0F2F5 0%, #f7f9fc 100%); // Another light, modern grey-blue
-    */
-    /* If you want the vibrant login page gradient everywhere:
-       background: linear-gradient(to bottom right, #6a11cb 0%, #2575fc 100%);
-    */
     -webkit-font-smoothing: antialiased; /* Smoother font rendering */
     -moz-osx-font-smoothing: grayscale;
     /* For layout that might need to push a footer down */
     display: flex;
     flex-direction: column;
+    font-size: 0.95rem; /* Slightly smaller base font size */
 }
 
 /* Base Link Styling */
 a {
     color: #3498db; /* Primary link color */
     text-decoration: none;
-    transition: color 0.3s ease;
+    transition: color 0.3s ease, text-decoration 0.3s ease; /* Add text-decoration to transition */
 }
 
     a:hover {
@@ -44,33 +37,35 @@ a {
 h1, h2, h3, h4, h5, h6 {
     font-family: 'Segoe UI', 'Helvetica Neue', Helvetica, Arial, sans-serif;
     color: #2c3e50; /* Darker color for headings */
-    margin-top: 20px;
-    margin-bottom: 15px;
+    margin-top: 15px; /* Reduced margin */
+    margin-bottom: 10px; /* Reduced margin */
     font-weight: 600;
+    /* subtle text-shadow for depth */
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
 }
 
 h1 {
-    font-size: 2.5rem;
+    font-size: 2.2rem; /* Reduced */
 }
 
 h2 {
-    font-size: 2rem;
+    font-size: 1.8rem; /* Reduced */
 }
 
 h3 {
-    font-size: 1.75rem;
+    font-size: 1.5rem; /* Reduced */
 }
 
 h4 {
-    font-size: 1.5rem;
+    font-size: 1.3rem; /* Reduced */
 }
 
 h5 {
-    font-size: 1.25rem;
+    font-size: 1.15rem; /* Reduced */
 }
 
 h6 {
-    font-size: 1rem;
+    font-size: 1rem; /* Reduced */
 }
 
 /* ========================================================================
@@ -79,11 +74,11 @@ h6 {
 
 /* Main content area padding below fixed navbar */
 .body-content {
-    margin-top: 70px; /* Adjust this if your navbar height changes */
-    padding: 30px 20px; /* More padding top/bottom and slight side padding */
+    margin-top: 60px; /* Adjusted for potentially smaller navbar */
+    padding: 20px 15px; /* Reduced padding */
     flex-grow: 1; /* Allows content area to take up available space */
     width: 100%; /* Ensures it respects flex container */
-    max-width: 1200px; /* Limit content width for readability on very wide screens */
+    max-width: 1200px; /* Slightly reduced max-width */
     margin-left: auto; /* Center content horizontally */
     margin-right: auto; /* Center content horizontally */
 }
@@ -95,12 +90,13 @@ h6 {
 
 /* Footer Styling */
 footer {
-    padding: 20px 0;
-    margin-top: 30px;
+    padding: 20px 0; /* Reduced padding */
+    margin-top: 30px; /* Reduced space above footer */
     border-top: 1px solid #e0e0e0;
     color: #7f8c8d; /* Muted grey for footer text */
-    font-size: 0.9em;
+    font-size: 0.9em; /* Slightly smaller font */
     text-align: center;
+    background-color: #f8f9fa; /* Light background for footer */
 }
 
 /* ========================================================================
@@ -116,10 +112,12 @@ input[type="date"],
 select,
 textarea {
     max-width: 100%; /* Ensure inputs fill their parent container width */
-    border-radius: 8px; /* More rounded corners */
-    padding: 10px 15px; /* Comfortable padding */
+    border-radius: 8px; /* Slightly less rounded corners */
+    padding: 10px 15px; /* Reduced padding */
     border: 1px solid #ced4da;
-    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+    background-color: #fdfdfd; /* Subtle off-white background */
+    font-size: 0.95rem; /* Consistent font size */
 }
 
     /* Focus state for inputs */
@@ -130,64 +128,75 @@ textarea {
     input[type="date"]:focus,
     select:focus,
     textarea:focus {
-        border-color: #80bdff; /* Bootstrap's primary focus color */
-        box-shadow: 0 0 0 0.25rem rgba(0, 123, 255, 0.25); /* Subtle glow */
+        border-color: #3498db; /* Primary blue on focus */
+        box-shadow: 0 0 0 0.2rem rgba(52, 152, 219, 0.15); /* Softer, primary blue glow */
         outline: none;
+        background-color: #ffffff; /* White background when focused */
     }
 
 /* For labels within form groups */
 .form-label {
     font-weight: 600;
-    color: #555;
-    margin-bottom: 5px;
+    color: #4a4a4a; /* Slightly darker for better contrast */
+    margin-bottom: 5px; /* Reduced space below labels */
 }
 
 /* General button styling for Bootstrap buttons (btn) */
 .btn {
     font-weight: 600;
-    border-radius: 8px; /* Consistent button radius */
-    padding: 10px 20px;
+    border-radius: 8px; /* Consistent button radius, slightly less rounded */
+    padding: 10px 20px; /* Reduced padding */
     transition: all 0.3s ease;
     text-transform: uppercase; /* Slightly more modern look */
-    letter-spacing: 0.5px;
+    letter-spacing: 0.5px; /* Reduced letter spacing */
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08); /* Default subtle shadow for all buttons */
+    font-size: 0.9rem; /* Reduced font size */
 }
 
 .btn-primary {
     background-color: #3498db;
     border-color: #3498db;
+    color: #ffffff; /* Ensure text is white */
 }
 
     .btn-primary:hover {
         background-color: #2980b9;
         border-color: #2980b9;
-        transform: translateY(-2px); /* Lift effect */
-        box-shadow: 0 4px 8px rgba(52, 152, 219, 0.3); /* Subtle glow */
+        transform: translateY(-2px); /* Slightly less pronounced lift effect */
+        box-shadow: 0 4px 10px rgba(52, 152, 219, 0.3); /* Stronger glow */
     }
 
     .btn-primary:active {
         transform: translateY(0);
+        box-shadow: 0 1px 3px rgba(52, 152, 219, 0.15); /* Recessed effect */
     }
 
 .btn-outline-primary {
     color: #3498db;
     border-color: #3498db;
+    background-color: transparent; /* Ensure transparent background */
 }
 
     .btn-outline-primary:hover {
         background-color: #3498db;
         color: #fff;
-        transform: translateY(-2px);
-        box-shadow: 0 4px 8px rgba(52, 152, 219, 0.3);
+        transform: translateY(-2px); /* Lift effect */
+        box-shadow: 0 4px 10px rgba(52, 152, 219, 0.3); /* Stronger glow */
     }
 
     .btn-outline-primary:active {
         transform: translateY(0);
+        box-shadow: 0 1px 3px rgba(52, 152, 219, 0.15);
     }
 
 /* Alert Messages (Bootstrap's defaults are good, but we can refine) */
 .alert {
-    border-radius: 8px;
+    border-radius: 8px; /* Consistent rounded corners */
     font-weight: 500;
+    box-shadow: 0 1px 5px rgba(0, 0, 0, 0.06); /* Subtle shadow for alerts */
+    padding: 0.8rem 1.2rem; /* Reduced padding */
+    margin-bottom: 15px; /* Reduced margin bottom */
+    font-size: 0.9rem; /* Smaller font size */
 }
 
 /* ========================================================================
@@ -196,30 +205,33 @@ textarea {
 
 .navbar {
     background-color: #2c3e50 !important; /* A darker, modern blue-grey for the navbar background */
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15); /* More pronounced shadow for depth */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15); /* Reduced shadow for depth */
     transition: background-color 0.3s ease;
 }
 
 .navbar-brand {
     font-family: 'Segoe UI', sans-serif; /* A clean, modern font */
-    font-size: 1.6rem; /* Slightly larger for impact */
+    font-size: 1.6rem; /* Slightly smaller for impact */
     font-weight: 700; /* Bold */
     color: #ecf0f1 !important; /* Light text color for contrast */
     letter-spacing: 0.8px; /* Improved spacing */
-    transition: color 0.3s ease;
+    transition: color 0.3s ease, transform 0.2s ease;
 }
 
     .navbar-brand:hover {
         color: #3498db !important; /* Highlight on hover */
+        transform: scale(1.01); /* Subtle zoom effect */
     }
 
 .navbar-toggler {
-    border-color: rgba(255, 255, 255, 0.2);
+    border-color: rgba(255, 255, 255, 0.2); /* Slightly less visible border */
     transition: all 0.3s ease;
+    border-radius: 6px; /* Slightly less rounded toggler button */
+    padding: 0.25rem 0.5rem; /* Smaller padding for toggler */
 }
 
     .navbar-toggler:focus {
-        box-shadow: 0 0 0 0.25rem rgba(52, 152, 219, 0.5); /* Focus glow */
+        box-shadow: 0 0 0 0.2rem rgba(52, 152, 219, 0.3); /* Focus glow */
     }
 
 .navbar-toggler-icon {
@@ -230,27 +242,29 @@ textarea {
 .navbar-nav .nav-link {
     position: relative;
     color: #ecf0f1 !important; /* Default link color */
-    padding: 0.75rem 1.2rem; /* More generous padding for better click area and spacing */
-    margin: 0 5px; /* Subtle spacing between links */
+    padding: 0.6rem 1rem; /* Reduced padding for better click area and spacing */
+    margin: 0 6px; /* Subtle spacing between links */
     font-weight: 500;
-    transition: color 0.3s ease, background-color 0.3s ease;
-    border-radius: 6px; /* Slightly rounded corners for links */
+    transition: color 0.3s ease, background-color 0.3s ease, transform 0.2s ease;
+    border-radius: 6px; /* Slightly less rounded corners for links */
+    font-size: 0.95rem; /* Smaller font size */
 }
 
     .navbar-nav .nav-link:hover {
         color: #3498db !important; /* Highlight color on hover */
-        background-color: rgba(255, 255, 255, 0.1); /* Subtle background on hover */
+        background-color: rgba(255, 255, 255, 0.1); /* Slightly less prominent background on hover */
+        transform: translateY(-1px); /* Subtle lift */
     }
 
     /* Active Link Indicator */
     .navbar-nav .nav-link::after {
         content: '';
         position: absolute;
-        bottom: 5px; /* Adjust position relative to padding */
+        bottom: 3px; /* Adjust position relative to padding */
         left: 50%; /* Start from center */
         transform: translateX(-50%); /* Center the line */
         width: 0;
-        height: 3px;
+        height: 3px; /* Thinner active line */
         background-color: #3498db; /* A vibrant blue for the active indicator */
         border-radius: 2px;
         transition: width 0.3s ease;
@@ -258,7 +272,7 @@ textarea {
 
     .navbar-nav .nav-link:hover::after,
     .navbar-nav .nav-link.active::after {
-        width: calc(100% - 20px); /* Adjust width to account for padding, making it slightly shorter than full link */
+        width: calc(100% - 16px); /* Adjust width to account for padding, making it slightly shorter than full link */
     }
 
     .navbar-nav .nav-link.active {
@@ -270,8 +284,9 @@ textarea {
 /* User Greeting */
 .navbar .user-greeting {
     color: #ecf0f1; /* Consistent text color */
-    margin-right: 15px; /* Spacing before the logout button */
+    margin-right: 15px; /* Reduced spacing before the logout button */
     font-weight: 500;
+    font-size: 0.9rem; /* Smaller font size */
 }
 
     .navbar .user-greeting strong {
@@ -285,20 +300,23 @@ textarea {
     border-color: #ecf0f1;
     color: #ecf0f1;
     transition: all 0.3s ease;
-    padding: 8px 18px; /* More padding for button */
-    border-radius: 25px; /* Pill-shaped button */
+    padding: 8px 15px; /* Reduced padding for button */
+    border-radius: 20px; /* Slightly less pill-shaped button */
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08); /* Subtle shadow */
+    font-size: 0.85rem; /* Smaller font size */
 }
 
     .navbar .btn-outline-light:hover {
         background-color: #3498db; /* Fill with primary blue on hover */
         color: #fff;
         border-color: #3498db;
-        transform: translateY(-2px); /* Lift effect */
-        box-shadow: 0 4px 10px rgba(52, 152, 219, 0.4); /* Glow effect */
+        transform: translateY(-1px); /* Lift effect */
+        box-shadow: 0 3px 8px rgba(52, 152, 219, 0.3); /* Glow effect */
     }
 
     .navbar .btn-outline-light:active {
         transform: translateY(0);
+        box-shadow: none;
     }
 
 /* Login Button */
@@ -306,31 +324,25 @@ textarea {
     background-color: #3498db; /* Consistent primary color */
     color: #fff;
     transition: all 0.3s ease;
-    padding: 8px 18px; /* More padding for button */
-    border-radius: 25px; /* Pill-shaped button */
+    padding: 8px 15px; /* Reduced padding for button */
+    border-radius: 20px; /* Slightly less pill-shaped button */
     border: 1px solid #3498db; /* Solid border */
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08); /* Subtle shadow */
+    font-size: 0.85rem; /* Smaller font size */
 }
 
     .navbar .btn-light:hover {
         background-color: #2980b9; /* Darker blue on hover */
         color: #fff;
         border-color: #2980b9;
-        transform: translateY(-2px); /* Lift effect */
-        box-shadow: 0 4px 10px rgba(52, 152, 219, 0.4); /* Glow effect */
+        transform: translateY(-1px); /* Lift effect */
+        box-shadow: 0 3px 8px rgba(52, 152, 219, 0.3); /* Glow effect */
     }
 
 /* ========================================================================
    LOGIN PAGE SPECIFIC STYLES (From previous improvement)
    ======================================================================== */
 
-/* Note: The 'body' background for the login page is now handled by the global 'body' rule above.
-   If you want the vibrant gradient *only* for the login page, you'd apply it to a specific class
-   on the login page's outermost container instead of the body, e.g., '.login-page-wrapper { background: ... }'
-   and then ensure the login layout has that class.
-*/
-
-/* This class is used in the login page's HTML to center the card.
-   Ensure it plays well with the global body flex. */
 .d-flex.justify-content-center.align-items-center.min-vh-100 {
     flex-grow: 1; /* Allows the login container to grow and push the footer down */
 }
@@ -338,43 +350,50 @@ textarea {
 /* Apply to the card for a subtle lift on hover */
 .custom-login-card {
     transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
-    border-radius: 12px; /* More rounded corners */
-    max-width: 380px; /* Adjusted slightly for better default on small screens */
+    border-radius: 12px; /* Less rounded corners for a softer look */
+    max-width: 350px; /* Adjusted for better proportion */
     width: 90%; /* Ensure it's responsive and doesn't overflow on very small screens */
-    padding: 30px; /* Slightly increased default padding */
+    padding: 30px; /* Reduced default padding */
     background-color: #ffffff; /* Explicitly set card background to white */
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1); /* Standard shadow */
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1); /* Reduced, softer shadow */
 }
 
     .custom-login-card:hover {
-        transform: translateY(-5px); /* Slight lift */
-        box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15) !important; /* Slightly more pronounced shadow */
+        transform: translateY(-5px); /* Less pronounced lift */
+        box-shadow: 0 0.8rem 1.5rem rgba(0, 0, 0, 0.15) !important; /* Less pronounced shadow */
     }
 
 /* Custom styling for the login button hover */
 .custom-login-button {
     transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+    border-radius: 8px; /* Match global button radius */
+    padding: 10px 20px; /* Match global button padding */
+    font-weight: 700; /* Bolder for prominence */
+    letter-spacing: 0.8px; /* Less spacing */
+    font-size: 0.9rem; /* Smaller font size */
 }
 
     .custom-login-button:hover {
         background-color: #0d6efd; /* Darken primary blue a bit */
         transform: translateY(-2px); /* Slight lift */
-        box-shadow: 0 0.5rem 1rem rgba(0, 123, 255, 0.25); /* Subtle blue glow shadow */
+        box-shadow: 0 0.4rem 1rem rgba(13, 110, 253, 0.25); /* Subtle blue glow shadow */
     }
 
     .custom-login-button:active {
         transform: translateY(0);
-        box-shadow: none;
+        box-shadow: 0 1px 3px rgba(13, 110, 253, 0.1); /* Recessed effect */
     }
 
 /* Optional: Subtle hover for form inputs */
 .form-control:focus {
-    box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25);
+    box-shadow: 0 0 0 0.2rem rgba(13, 110, 253, 0.2);
 }
 
 /* Optional: Hover for forgot password link */
 .custom-forgot-password {
     transition: color 0.3s ease;
+    font-weight: 500;
+    font-size: 0.9rem; /* Smaller font size */
 }
 
     .custom-forgot-password:hover {
@@ -385,21 +404,21 @@ textarea {
 /* --- Responsive Adjustments for Desktop Width --- */
 @media (min-width: 768px) { /* Medium devices (tablets) and up */
     .custom-login-card {
-        max-width: 500px; /* Increased width for tablets and desktops */
-        padding: 40px; /* More padding for a roomier feel */
+        max-width: 450px; /* Reduced width for tablets and desktops */
+        padding: 40px; /* Less padding for a roomier feel */
     }
 }
 
 @media (min-width: 992px) { /* Large devices (desktops) and up */
     .custom-login-card {
-        max-width: 550px; /* Even wider for larger desktops */
-        padding: 50px; /* Even more padding */
+        max-width: 500px; /* Even wider for larger desktops */
+        padding: 45px; /* Even less padding */
     }
 }
 
 @media (min-width: 1200px) { /* Extra large devices (large desktops) and up */
     .custom-login-card {
-        max-width: 600px; /* Max width for very large screens */
+        max-width: 550px; /* Max width for very large screens */
     }
 }
 
@@ -411,30 +430,33 @@ textarea {
 .dashboard-card {
     background-color: #ffffff; /* White background for cards */
     border: none !important; /* Remove default card border */
-    border-radius: 12px; /* Consistent rounded corners */
+    border-radius: 12px; /* Consistent rounded corners, slightly less pronounced */
     overflow: hidden; /* Ensures border-start doesn't bleed */
     transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.06); /* Default subtle shadow for dashboard cards */
 }
 
     .dashboard-card:hover {
-        transform: translateY(-5px); /* Lift effect on hover */
-        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15) !important; /* More pronounced shadow */
+        transform: translateY(-5px); /* Less pronounced lift effect on hover */
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12) !important; /* Less pronounced, softer shadow */
     }
 
     .dashboard-card .card-body {
-        padding: 2rem; /* More internal padding for cards */
+        padding: 1.5rem; /* Reduced internal padding for cards */
     }
 
     .dashboard-card .card-title {
         font-weight: 500;
-        font-size: 1.1rem;
+        font-size: 1.1rem; /* Smaller */
         color: #7f8c8d !important; /* Muted text for title */
+        letter-spacing: 0.4px;
     }
 
     .dashboard-card .display-6 {
-        font-size: 3rem; /* Slightly larger for impact */
+        font-size: 2.8rem; /* Smaller for impact */
         color: #2c3e50; /* Darker number color */
         line-height: 1.2;
+        font-weight: 700; /* Bolder numbers */
     }
 
     /* Ensure icons in dashboard cards are colored correctly */
@@ -445,27 +467,27 @@ textarea {
     .dashboard-card .text-info {
         color: #0dcaf0 !important;
     }
-    /* Bootstrap's default info */
+
     .dashboard-card .text-success {
         color: #198754 !important;
     }
-/* Bootstrap's default success */
 
 /* Dashboard action buttons (e.g., "Pending Returns") */
 .dashboard-action-btn {
-    border-radius: 10px; /* Rounded corners for action buttons */
+    border-radius: 10px; /* Less rounded corners for action buttons */
     transition: all 0.3s ease;
-    min-height: 100px; /* Ensures consistent height */
+    min-height: 90px; /* Reduced consistent height */
     justify-content: center; /* Center content vertically */
-    padding: 1rem; /* Adjust padding for better look */
+    padding: 1rem; /* Reduced padding */
     font-weight: 600;
-    font-size: 1.1rem;
+    font-size: 1.05rem; /* Smaller font */
     color: #2c3e50; /* Default text color for these buttons */
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.08); /* Subtle shadow */
 }
 
     .dashboard-action-btn i {
-        font-size: 2.5rem; /* Larger icons for action buttons */
-        margin-bottom: 0.5rem;
+        font-size: 2.5rem; /* Smaller icons for action buttons */
+        margin-bottom: 0.6rem; /* Less space below icon */
         color: inherit; /* Inherit color from parent button */
     }
 
@@ -473,45 +495,53 @@ textarea {
 .btn-outline-warning {
     color: #ffc107; /* Bootstrap's default yellow */
     border-color: #ffc107;
+    background-color: #fff; /* White background for better contrast */
 }
 
     .btn-outline-warning:hover {
         background-color: #ffc107;
         color: #212529 !important; /* Dark text on hover */
-        box-shadow: 0 4px 8px rgba(255, 193, 7, 0.3);
+        box-shadow: 0 4px 10px rgba(255, 193, 7, 0.3);
+        transform: translateY(-2px);
     }
 
 .btn-outline-dark {
     color: #343a40; /* Bootstrap's default dark */
     border-color: #343a40;
+    background-color: #fff;
 }
 
     .btn-outline-dark:hover {
         background-color: #343a40;
         color: #fff !important;
-        box-shadow: 0 4px 8px rgba(52, 58, 64, 0.3);
+        box-shadow: 0 4px 10px rgba(52, 58, 64, 0.3);
+        transform: translateY(-2px);
     }
 
 .btn-outline-info {
     color: #0dcaf0;
     border-color: #0dcaf0;
+    background-color: #fff;
 }
 
     .btn-outline-info:hover {
         background-color: #0dcaf0;
         color: #212529 !important;
-        box-shadow: 0 4px 8px rgba(13, 202, 240, 0.3);
+        box-shadow: 0 4px 10px rgba(13, 202, 240, 0.3);
+        transform: translateY(-2px);
     }
 
 .btn-outline-secondary { /* For 'View Customers' button */
     color: #6c757d;
     border-color: #6c757d;
+    background-color: #fff;
 }
 
     .btn-outline-secondary:hover {
         background-color: #6c757d;
         color: #fff !important;
-        box-shadow: 0 4px 8px rgba(108, 117, 125, 0.3);
+        box-shadow: 0 4px 10px rgba(108, 117, 125, 0.3);
+        transform: translateY(-2px);
     }
 
 
@@ -520,15 +550,16 @@ textarea {
     background-color: #3498db;
     border-color: #3498db;
     font-weight: 500; /* Slightly less bold than global btn */
-    padding: 0.6rem 1.2rem; /* Adjust padding */
+    padding: 0.6rem 1.2rem; /* Reduced padding */
     border-radius: 8px; /* Consistent rounded corners */
+    font-size: 0.85rem; /* Smaller font size */
 }
 
     .dashboard-card .btn-primary:hover {
         background-color: #2980b9;
         border-color: #2980b9;
         transform: translateY(-2px);
-        box-shadow: 0 4px 8px rgba(52, 152, 219, 0.3);
+        box-shadow: 0 4px 8px rgba(52, 152, 219, 0.25);
     }
 
 /* Custom styling for info button within dashboard card */
@@ -539,13 +570,14 @@ textarea {
     padding: 0.6rem 1.2rem;
     border-radius: 8px;
     color: #212529; /* Dark text for light button */
+    font-size: 0.85rem; /* Smaller font size */
 }
 
     .dashboard-card .btn-info:hover {
         background-color: #0baed3; /* Slightly darker info on hover */
         border-color: #0baed3;
         transform: translateY(-2px);
-        box-shadow: 0 4px 8px rgba(13, 202, 240, 0.3);
+        box-shadow: 0 4px 8px rgba(13, 202, 240, 0.25);
     }
 
 .dashboard-card .btn-success {
@@ -554,35 +586,239 @@ textarea {
     font-weight: 500;
     padding: 0.6rem 1.2rem;
     border-radius: 8px;
+    font-size: 0.85rem; /* Smaller font size */
 }
 
     .dashboard-card .btn-success:hover {
         background-color: #157347;
         border-color: #157347;
         transform: translateY(-2px);
-        box-shadow: 0 4px 8px rgba(25, 135, 84, 0.3);
+        box-shadow: 0 4px 8px rgba(25, 135, 84, 0.25);
     }
 
 /* Responsive adjustments for dashboard buttons */
 @media (max-width: 767.98px) {
     .dashboard-action-btn {
-        min-height: 80px; /* Slightly smaller height on mobile */
-        font-size: 1rem;
+        min-height: 75px; /* Smaller height on mobile */
+        font-size: 0.95rem;
         padding: 0.8rem;
     }
 
         .dashboard-action-btn i {
             font-size: 2rem;
+            margin-bottom: 0.4rem;
         }
 
     .d-flex.justify-content-between.align-items-center.mb-4 {
         flex-direction: column;
         align-items: flex-start !important; /* Align items to start */
-        gap: 15px; /* Space between title and buttons */
+        gap: 15px; /* Less space between title and buttons */
     }
 
     .d-flex.gap-3 {
         width: 100%; /* Make button group full width */
-        justify-content: flex-start; /* Align buttons to start */
+        justify-content: center; /* Center buttons horizontally */
+        flex-wrap: wrap; /* Allow buttons to wrap to next line */
+        gap: 10px; /* Less space between wrapped buttons */
     }
+}
+
+/* --- Notification Badge for Dashboard Button --- */
+.return-badge {
+    padding: 0.3em 0.6em; /* Reduced padding for better look */
+    font-size: 0.7em; /* Smaller font size */
+    font-weight: bold;
+    line-height: 1;
+    color: #fff;
+    background-color: #dc3545; /* Bootstrap's red */
+    border: 1px solid #fff; /* White border for contrast */
+    z-index: 10; /* Ensure it's above other elements if necessary */
+    border-radius: 50%; /* Make it perfectly round */
+    min-width: 20px; /* Ensure a minimum size */
+    min-height: 20px;
+    display: flex; /* Use flexbox to center content */
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.15); /* Subtle shadow for the badge */
+}
+
+/* --- General Table Styling (New Addition) --- */
+.table {
+    border-collapse: separate; /* Allow border-radius */
+    border-spacing: 0;
+    width: 100%;
+    margin-bottom: 1rem; /* Reduced margin */
+    background-color: #ffffff;
+    border-radius: 10px; /* Less rounded corners for the table */
+    overflow: hidden; /* Ensures rounded corners are visible */
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05); /* Subtle shadow for tables */
+    font-size: 0.9rem; /* Smaller table font size */
+}
+
+    .table thead th {
+        background-color: #f8f9fa; /* Light grey header background */
+        color: #4a4a4a; /* Darker header text */
+        font-weight: 600;
+        padding: 0.8rem 1rem; /* Reduced padding */
+        border-bottom: 1px solid #e9ecef; /* Thinner border below header */
+        text-transform: uppercase;
+        font-size: 0.8em;
+        letter-spacing: 0.3px;
+    }
+
+    .table tbody tr {
+        transition: background-color 0.2s ease, transform 0.1s ease;
+    }
+
+        .table tbody tr:nth-of-type(even) {
+            background-color: #fcfcfc; /* Very subtle stripe for readability */
+        }
+
+        .table tbody tr:hover {
+            background-color: #eaf3fd; /* Light blue on hover */
+            transform: translateY(-1px); /* Subtle lift on hover */
+            box-shadow: 0 1px 5px rgba(52, 152, 219, 0.08); /* Subtle blue glow */
+        }
+
+    .table tbody td {
+        padding: 0.8rem 1rem; /* Reduced padding */
+        border-top: 1px solid #e9ecef; /* Light border between rows */
+        color: #34495e;
+    }
+
+    /* Custom styling for table actions (e.g., Edit, Delete buttons in tables) */
+    .table .btn-sm {
+        padding: 0.3rem 0.6rem;
+        font-size: 0.8rem;
+        border-radius: 6px;
+        font-weight: 500;
+        box-shadow: none; /* Remove default shadow for small buttons in table */
+    }
+
+        .table .btn-sm:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+        }
+
+/* Pagination (New Addition) */
+.pagination {
+    margin-top: 1.5rem; /* Reduced margin */
+    justify-content: center;
+}
+
+.page-item .page-link {
+    border-radius: 6px !important; /* Less rounded pagination items */
+    margin: 0 3px; /* Reduced margin */
+    min-width: 35px; /* Ensure sufficient width */
+    height: 35px; /* Consistent height */
+    line-height: 20px; /* Adjust line height to center text vertically */
+    text-align: center;
+    transition: all 0.3s ease;
+    color: #3498db;
+    border: 1px solid #dee2e6;
+    font-size: 0.9rem; /* Smaller font size */
+}
+
+.page-item.active .page-link {
+    background-color: #3498db;
+    border-color: #3498db;
+    color: #fff;
+    box-shadow: 0 2px 8px rgba(52, 152, 219, 0.25);
+}
+
+.page-item .page-link:hover {
+    background-color: #eaf3fd;
+    color: #2980b9;
+    border-color: #3498db;
+    transform: translateY(-1px);
+}
+
+.page-item.disabled .page-link {
+    color: #adb5bd;
+    pointer-events: none;
+    background-color: #f8f9fa;
+    border-color: #dee2e6;
+}
+
+/* Card Headers (New Addition - for general cards outside dashboard) */
+.card-header {
+    background-color: #f8f9fa; /* Light background for card headers */
+    border-bottom: 1px solid #e9ecef;
+    font-weight: 600;
+    color: #2c3e50;
+    padding: 1rem 1.2rem; /* Reduced padding */
+    font-size: 1.05rem; /* Reduced font size */
+    border-top-left-radius: 10px; /* Match card border-radius */
+    border-top-right-radius: 10px;
+}
+
+/* Form Group Spacing (New Addition) */
+.form-group {
+    margin-bottom: 1rem; /* Reduced space between form groups */
+}
+
+/* Icon Button Styling (New Addition - useful for small action icons) */
+.btn-icon {
+    background: none;
+    border: none;
+    padding: 0.4rem; /* Reduced padding */
+    font-size: 1.2rem; /* Slightly smaller */
+    color: #7f8c8d; /* Muted color */
+    transition: color 0.3s ease, transform 0.2s ease;
+    border-radius: 50%;
+}
+
+    .btn-icon:hover {
+        color: #3498db; /* Primary color on hover */
+        transform: scale(1.08); /* Slightly less pronounced scale */
+        background-color: rgba(52, 152, 219, 0.08);
+    }
+
+/* Tooltip and Popover (New Addition - if you use them) */
+.tooltip-inner {
+    background-color: #2c3e50; /* Dark background */
+    color: #fff;
+    border-radius: 5px; /* Slightly less rounded */
+    padding: 6px 10px; /* Reduced padding */
+    font-size: 0.85em; /* Smaller font size */
+}
+
+.tooltip.bs-tooltip-auto[x-placement^=top] .tooltip-arrow::before,
+.tooltip.bs-tooltip-top .tooltip-arrow::before {
+    border-top-color: #2c3e50;
+}
+
+.popover-header {
+    background-color: #3498db;
+    color: #fff;
+    font-weight: 600;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    font-size: 0.95rem; /* Smaller font size */
+    padding: 0.6rem 0.8rem; /* Reduced padding */
+}
+
+.popover-body {
+    background-color: #fff;
+    color: #34495e;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    padding: 0.8rem; /* Reduced padding */
+    font-size: 0.9rem; /* Smaller font size */
+}
+
+.popover.bs-popover-auto[x-placement^=top] .popover-arrow::before,
+.popover.bs-popover-top .popover-arrow::before {
+    border-top-color: #3498db;
+}
+
+
+/* --- New: General View Card Styling --- */
+.view-card {
+    background-color: #ffffff;
+    border: none;
+    border-radius: 10px; /* Less rounded with other modern elements */
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05); /* Subtle shadow for depth */
+    padding: 20px; /* Reduced padding inside cards */
+    margin-bottom: 1.5rem; /* Less space below cards */
 }
