@@ -43,9 +43,10 @@ VehicleRentalSystem/
 ## ⚙️ Installation & Setup
 
 ### 1️⃣ Clone Repository
-```bash
 git clone https://github.com/yourusername/VehicleRentalSystem.git
 
+
+2️⃣ Open in Visual Studio
 Open the .sln file in Visual Studio.
 
 3️⃣ Configure Database
