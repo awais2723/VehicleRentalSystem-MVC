@@ -43,7 +43,7 @@ VehicleRentalSystem/
 ## ⚙️ Installation & Setup
 
 ### 1️⃣ Clone Repository
-git clone https://github.com/yourusername/VehicleRentalSystem.git
+git clone https://github.com/awais2723/VehicleRentalSystem-MVC.git
 
 
 2️⃣ Open in Visual Studio
